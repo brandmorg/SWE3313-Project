@@ -1,0 +1,26 @@
+Project Plan Notes
+
+1. Customer information keyed in by the customer. 
+	- Need input type that can handle characters and integers.
+	- Name, Address, Phone, Type of Charge (Visa/MC). 
+		- Do we need the pertinent information?
+2. Process Payments. Type of payment (Debit/Credit) and Amount.
+3. Customer Database and information.
+4. Print Receipt
+	- Customer Information
+	- List of items ordered
+	- Delivery/Pickup
+	- Amount Due
+5. System should have complete menu.
+	- Pizzas
+		- Sizes, toppings, crust, and drinks.
+		
+		
+		
+MEMBER ASSIGNMENTS
+
+Branden - Documentation
+Greg - Documentation
+Michael - NodeJS
+Patrick - HTML Website
+Blake - MySQL
