@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const StartPage = () => (
   <div className="jumbotron">
-      <h1>Testing Testy Testes</h1>
-      <p>Want to make sure this shit renders okay</p>
+      <h1>Testing Testy Test</h1>
+      <p>Want to make sure this stuff renders okay</p>
       <button to="#" className="btn btn-primary btn-lg">no Clicky</button>
   </div>
 );
