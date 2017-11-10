@@ -1,12 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import '../node_modules/semantic-ui-css/semantic.min.css';
+import configureStore from './store/configureStore';
+import Root from './Root';
+// import createBrowserHistory from 'history/createBrowserHistory';
+import { loadCustomers } from "./actions/customerActions";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import '../node_modules/bulma/css/bulma.css';
 import './index.css';
-import App from './components/App';
-import { BrowserRouter as Router } from 'react-router-dom';
 
-render((
-  <Router>
-    <App />
-  </Router>
-  ), document.getElementById('root'));
+const store = configureStore();
+store.dispatch(loadCustomers());
+
+
+
+render(
+  <Root store={store} />,
+  document.getElementById('root')
+);
