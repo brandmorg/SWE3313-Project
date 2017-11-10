@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-class StartPage extends Component {
-  constructor(props) {
-    super(props);
+const StartPage = () => (
+  <div className="jumbotron">
+      <h1>Testing Testy Testes</h1>
+      <p>Want to make sure this shit renders okay</p>
+      <button to="#" className="btn btn-primary btn-lg">no Clicky</button>
+  </div>
+);
 
-  }
-
-  render() {
-    return (
-      <div>
-
-      </div>
-    );
-  }
-}
 
 StartPage.propTypes = {};
 

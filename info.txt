@@ -1,0 +1,89 @@
+Packages needed: 'express' 'firebase-admin' 'node-datetime'
+
+Menu {
+    Pizza {
+        string Size[] //name of sizes
+        number SizePrice[]
+        string Topping[] //name of topping
+        number ToppingPrice[]
+    }
+    Side[] {
+        string Name //name of topping
+        number Price
+    }
+    Drink {
+        string Type[] //name of drinks
+        string Size[] //name of sizes
+        number Price[]
+    }
+}
+
+
+
+
+
+Customer {
+    string FirstName
+    string LastName
+    string PhoneNumber //"6781234567"
+    string Address //"123 Apple Drive, City, State, ZIP"
+    string Information //Used to store any notes
+}
+
+
+
+
+
+Payment {
+    string PaymentMethod //"Cash", "Credit", "Cheque"
+
+    number Value
+
+    number CreditCardNumber
+    number CreditCardSecurity
+    string CreditCardExpiration //"03/17"
+
+    string ChequeDate //"MM/DD/YYYY"
+    number ChequeNumber
+}
+
+
+
+
+
+Order {
+    string CustomerId
+    Payment
+    Pizza[]
+    Side[] //Just an array of indexes of sides (based on the menu)
+    Drink[]
+    number Total //generated on NodeJS server
+}
+
+Pizza {
+    number Size,
+    number Topping[]
+}
+
+Drink[] {
+    number Type
+    number Size
+}
+
+
+
+
+
+TransactionComplete {
+    string Id
+    string Receipt
+}
+
+
+
+
+
+GetTransactionHelper {
+    string TransactionId //If this is supplied, rest are ignored
+    string CustomerId //If transactionId does not exist.
+}
