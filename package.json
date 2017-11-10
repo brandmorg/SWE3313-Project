@@ -11,7 +11,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "firebase-admin": "^5.4.3",
+    "node-datetime": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

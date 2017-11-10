@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 
 const StartPage = () => (
   <div className="jumbotron">
@@ -10,6 +10,6 @@ const StartPage = () => (
 );
 
 
-StartPage.propTypes = {};
+// StartPage.propTypes = {};
 
 export default StartPage;
