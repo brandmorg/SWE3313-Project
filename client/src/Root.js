@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './components/App';
 
+// Might make sense to put all the routes in here? not sure on that
+
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>

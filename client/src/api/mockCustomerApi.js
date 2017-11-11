@@ -46,10 +46,6 @@ const customers = [
   },
 ];
 
-function replaceAll(str, find, replace) {
-  return str.replace(new RegExp(find, 'g'), replace);
-}
-
 //This would be performed on the server in a real app. Just stubbing in.
 const generateId = (customer) => {
   let Id = "";
@@ -72,7 +68,7 @@ class CustomerApi {
       setTimeout(() => {
 
         if (customer.id) {
-          const existingCustomerIndex = customers.findIndex(a => a.id == customer.id);
+          const existingCustomerIndex = customers.findIndex(a => a.id === customer.id);
           customers.splice(existingCustomerIndex, 1, customer);
         } else {
           //Just simulating creation here.

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <nav className="nav bg-dark justify-content-center">
-      <Link className="nav-link" to='/'>View Open Orders</Link>
-      <Link className="nav-link" to='/orders'>New Order</Link>
+    <nav className="nav bg-light justify-content-center">
+      <Link className="nav-link" to='/order'>New Order</Link>
       <Link className="nav-link" to='/'>Order Lookup</Link>
     </nav>
   );

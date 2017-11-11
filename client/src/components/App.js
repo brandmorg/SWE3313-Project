@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './common/Header';
 import StartPage from './startpage/StartPage';
-import OrderPage from './order/ManageOrderPage';
+import ManageOrderPage from './order/ManageOrderPage';
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
         <Header/>
         <Switch>
           <Route exact path='/' component={StartPage}/>
-          {/*<Route exact path='/orders' component={OrderPage} />*/}
+          <Route exact path='/order' component={ManageOrderPage} />
           {/*<Route path='/orders/:id' component={OrderPage}/>*/}
         </Switch>
       </div>

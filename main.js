@@ -51,7 +51,7 @@ expApp.post('/set_customer/', (req, res) => SetCustomer(req, res));
 expApp.post('/get_transaction/', (req, res) => GetTransaction(req, res));
 expApp.post('/get_transaction_all/', (req, res) => GetTransactionAll(req, res));
 expApp.post('/set_transaction/', (req, res) => SetTransaction(req, res));
-expApp.listen(3000, () => console.log('App listening on port 3000.'));
+expApp.listen(3001, () => console.log('App listening on port 3000.'));
 
 function ExpressGetCommand(req, res) {
   res.send(menu);
