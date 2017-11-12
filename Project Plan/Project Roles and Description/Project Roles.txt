@@ -1,0 +1,7 @@
+MEMBER ASSIGNMENTS
+
+Branden - Documentation
+Greg - Documentation
+Michael - NodeJS
+Patrick - HTML Website
+Blake - MySQL
