@@ -6,18 +6,20 @@ const ItemsTableRow = ({item, rowNumber, editClick, deleteClick}) => {
     <tr>
       <th scope="row">{rowNumber}</th>
       <td>{item.name}</td>
-      <td>{item.price}</td>
+      <td>{item.quantity}</td>
       <td>
+        <span className="btn-group-sm">
         <button
-          className="btn btn-info"
+          className="btn btn-primary btn-sm"
           onClick={editClick}>
           Edit
         </button>
         <button
-          className="btn btn-danger"
+          className="btn btn-danger btn-sm"
           onClick={deleteClick}>
           Delete
         </button>
+        </span>
       </td>
     </tr>
   );

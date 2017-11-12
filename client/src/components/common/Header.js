@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
 
 const Header = () => {
   return (
-    <nav className="nav bg-light justify-content-center">
-      <Link className="nav-link" to='/order'>New Order</Link>
-      <Link className="nav-link" to='/'>Order Lookup</Link>
-    </nav>
+    <Menu className='blue inverted'>
+      <Menu.Item as={Link} to="/order">New Order</Menu.Item>
+      <Menu.Item as={Link} to="/">Order Lookup</Menu.Item>
+    </Menu>
   );
 };
+
 
 /*
 * ViewOpenOrders is the default home page/dashboard view

@@ -3,29 +3,33 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as orderActions from '../../actions/orderActions';
-import OrderItems from './OrderItems';
-import OrderSummary from "./OrderSummary";
+import { Grid, Segment} from 'semantic-ui-react';
 
-// import PizzaForm from './PizzaForm';
-// import DrinkForm from './DrinkForm';
+import PizzaForm from './newItem/PizzaForm';
+import DrinkForm from "./newItem/DrinkForm";
+import AddItemSelect from './newItem/AddItemSelect';
 
 // import { authorsFormattedForDropdown } from '../../selectors/selectors';
 // import toastr from 'toastr';
 
 /*
-* Container component for managing an order
+* MAJOR SUBCOMPONENTS/CHILDREN
+*   - OrderItems **CONTAINER**
+*     |--ItemsList
+*     |  |--ItemsListRow
+*     |--AddItemForm
+*        |--{selection for item type}
+*        |--PizzaForm
+*        |--DrinkForm
+*        |--SideForm
 *
-* State needs
-*   -Order object
-*   -addItem
+*   - CustomerPanel **CONTAINER**
+*     |--CustomerSearchForm
+*     |--ManageCustomerForm
 *
-*
-* Actions
-*   SubmitOrder
-*   SubmitPayment
-*   PrintReceipt?
-*
-* Handlers
+*   - OrderActions
+*     |--Order summary info
+*     |--Buttons for stuffs
 *   */
 
 class ManageOrderPage extends Component {
@@ -33,48 +37,146 @@ class ManageOrderPage extends Component {
     super(props);
 
     this.state = {
-      order: Object.assign({}, props.selectedOrder),
-      AddItem: null,
+      pizzaMenu: {
+        sizes: {
+          small: 6.99,
+          medium: 9.99,
+          large: 12.99
+        },
+        crusts: {
+          thin: 0,
+          regular: 0,
+          stuffed: 1
+        },
+        toppings: [
+          "Pepperoni",
+          "Sausage",
+          "Anchovy",
+          "Olives",
+          "Mushroom",
+          "Pineapple",
+          "Bacon",
+          "Cheese",
+          "Turds",
+          "Roadkill",
+          "Rabbit",
+          "Squirrel"
+        ],
+      },
+      drinkMenu: {
+        sizes: {
+          small: 1.59,
+          medium: 1.99,
+          large: 2.59
+        },
+        flavors: [
+          "Coke",
+          "Diet Coke",
+          "Sprite",
+          "Dr. Pepper",
+          "Sweet Tea",
+          "Unsweet Tea"
+        ]
+      },
+      selectedCustomer: {},
+      selectedItemType: "",
+      selectedItem: {
+        size: "",
+        crust: "",
+        flavor: "",
+      },
+      items: [],
+      isDelivery: false,
+
     }
+
+    this.updateSelectedItemState = this.updateSelectedItemState.bind(this);
+    this.updateSelectedItemType = this.updateSelectedItemType.bind(this);
   }
 
-  onItemEdit() {
-    console.log('onEdit called');
-  }
+  updateSelectedItemState = (e, { name, value}) => {
+    let item = Object.assign({}, this.state.selectedItem);
+    item[name] = value;
+    return this.setState({selectedItem: item});
+  };
 
-  onItemDelete() {
-    console.log('onDelete called');
-  }
+  updateSelectedItemType = (e, {value}) => {
+    return this.setState({selectedItemType: value});
+  };
 
+
+  // updateCustomerInfo(event) {
+  //   const field = event.target.name;
+  //   let customer = Object.assign({}, this.state.order.customer);
+  //   customer[field] = event.target.value;
+  //   return this.setState({customer: customer});
+  // }
+  //
+  // updateOrderItems(event) {
+  //   const field = event.target.name;
+  //   let item = Object.assign({}, this.state.selectedItem);
+  //   item[field] = event.target.value;
+  //
+  // }
+
+
+  /*
+  * New render() {
+  *   return (
+  *     <main className="container py-2">
+  *       <div className="row">
+  *         <Panel width="6">
+  *           <OrderItems />
+  *         </Panel>
+  *         <Panel width="6">
+  *           <CustomerPanel />
+  *           <OrderActions />
+  *         </Panel>
+  *       </div>
+  *     </main>
+  *   );
+  * }*/
   render() {
-    const testItems = [
-      {
-        name: "Sm Pizza",
-        price: 6.99
-      },
-      {
-        name: "Lrg Coca-cola",
-        price: 2.59
-      },
-      {
-        name: "Cinnamon Bites",
-        price: 3.99
-      }
-    ];
-
+    const { pizzaMenu, drinkMenu, selectedItem, selectedItemType } = this.state;
     return (
-      <main className="container py-2 px-0">
-        <div className="row">
-          <OrderItems items={testItems} editItemClick={this.onItemEdit()} deleteItemClick={this.onItemDelete()}/>
-          <OrderSummary/>
-        </div>
-      </main>
+
+      <Grid columns={2}>
+        <Grid.Column>
+          <Segment attached='top' className='blue inverted'>
+            <h2>Test</h2>
+          </Segment>
+          <Segment attached>
+            <h1>Table goes here</h1>
+          </Segment>
+          <Segment attached='bottom'>
+            <AddItemSelect
+              itemTypes={["Pizza", "Drink", "Side"]}
+              selectedItemType={selectedItemType}
+              onChange={this.updateSelectedItemType}/>
+
+            <PizzaForm
+              selectedItem={selectedItem}
+              onChange={this.updateSelectedItemState}
+              sizeOpts={Object.keys(pizzaMenu.sizes)}
+              crustOpts={Object.keys(pizzaMenu.crusts)}
+              toppingOpts={pizzaMenu.toppings}/>
+            <DrinkForm
+              selectedItem={selectedItem}
+              onChange={this.updateSelectedItemState}
+              sizeOpts={Object.keys(drinkMenu.sizes)}
+              flavorOpts={drinkMenu.flavors}/>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+
+        </Grid.Column>
+      </Grid>
     );
   }
 }
 
 ManageOrderPage.propTypes = {
-  selectedOrder: PropTypes.object.isRequired
+  selectedOrder: PropTypes.object
 }
 
 function mapStateToProps(state, ownProps) {

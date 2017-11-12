@@ -4,8 +4,8 @@ import configureStore from './store/configureStore';
 import Root from './Root';
 // import createBrowserHistory from 'history/createBrowserHistory';
 import { loadCustomers } from "./actions/customerActions";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import '../node_modules/bulma/css/bulma.css';
+import '../node_modules/semantic-ui-css/semantic.min.css';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 const store = configureStore();

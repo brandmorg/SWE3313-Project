@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /*
@@ -13,14 +13,22 @@ import PropTypes from 'prop-types';
 *     -Cancel
 *     */
 
-const OrderSummary = ({customer}) => {
-  return (
-    <div className="col-4 my-0">
-      <div className="card">
+class OrderSummary extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    }
+  }
+
+  render() {
+    return (
+      <div className="bg-light">
         <h2 className="card-title">Test</h2>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 OrderSummary.propTypes = {
