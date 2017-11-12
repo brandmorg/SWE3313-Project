@@ -7,6 +7,7 @@ import { Grid, Segment} from 'semantic-ui-react';
 
 import PizzaForm from './newItem/PizzaForm';
 import DrinkForm from "./newItem/DrinkForm";
+import SideForm from './newItem/SideForm';
 import AddItemSelect from './newItem/AddItemSelect';
 
 // import { authorsFormattedForDropdown } from '../../selectors/selectors';
@@ -76,19 +77,29 @@ class ManageOrderPage extends Component {
           "Dr. Pepper",
           "Sweet Tea",
           "Unsweet Tea"
-        ]
+        ],
+      },
+      sideMenu: {
+        cinnamonBites: 3.99,
+        cheeseSticks: 4.99
       },
       selectedCustomer: {},
-      selectedItemType: "",
+      selectedItemType: null,
+      itemTypes: {
+        Pizza: null,
+        Drink: null,
+        Side: null
+      },
       selectedItem: {
         size: "",
         crust: "",
         flavor: "",
+        price: 0.00
       },
       items: [],
       isDelivery: false,
 
-    }
+    };
 
     this.updateSelectedItemState = this.updateSelectedItemState.bind(this);
     this.updateSelectedItemType = this.updateSelectedItemType.bind(this);
@@ -103,6 +114,27 @@ class ManageOrderPage extends Component {
   updateSelectedItemType = (e, {value}) => {
     return this.setState({selectedItemType: value});
   };
+
+  componentWillMount() {
+    let itemTypes = {
+      Pizza: <PizzaForm
+        selectedItem={this.state.selectedItem}
+        onChange={this.updateSelectedItemState}
+        sizes={Object.keys(this.state.pizzaMenu.sizes)}
+        crusts={Object.keys(this.state.pizzaMenu.crusts)}
+        toppings={this.state.pizzaMenu.toppings}/>,
+      Drink: <DrinkForm
+        selectedItem={this.state.selectedItem}
+        onChange={this.updateSelectedItemState}
+        sizes={Object.keys(this.state.drinkMenu.sizes)}
+        flavors={this.state.drinkMenu.flavors}/>,
+      Side: <SideForm
+        selectedItem={this.state.selectedItem}
+        onChange={this.updateSelectedItemState}
+        sides={Object.keys(this.state.sideMenu)}/>,
+    };
+    return this.setState({ itemTypes: itemTypes });
+  }
 
 
   // updateCustomerInfo(event) {
@@ -137,7 +169,7 @@ class ManageOrderPage extends Component {
   *   );
   * }*/
   render() {
-    const { pizzaMenu, drinkMenu, selectedItem, selectedItemType } = this.state;
+    const { selectedItemType, itemTypes } = this.state;
     return (
 
       <Grid columns={2}>
@@ -150,21 +182,10 @@ class ManageOrderPage extends Component {
           </Segment>
           <Segment attached='bottom'>
             <AddItemSelect
-              itemTypes={["Pizza", "Drink", "Side"]}
+              itemTypes={["", "Pizza", "Drink", "Side"]}
               selectedItemType={selectedItemType}
               onChange={this.updateSelectedItemType}/>
-
-            <PizzaForm
-              selectedItem={selectedItem}
-              onChange={this.updateSelectedItemState}
-              sizeOpts={Object.keys(pizzaMenu.sizes)}
-              crustOpts={Object.keys(pizzaMenu.crusts)}
-              toppingOpts={pizzaMenu.toppings}/>
-            <DrinkForm
-              selectedItem={selectedItem}
-              onChange={this.updateSelectedItemState}
-              sizeOpts={Object.keys(drinkMenu.sizes)}
-              flavorOpts={drinkMenu.flavors}/>
+            {itemTypes[selectedItemType]}
           </Segment>
         </Grid.Column>
         <Grid.Column>
