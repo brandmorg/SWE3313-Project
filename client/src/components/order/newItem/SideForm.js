@@ -16,21 +16,21 @@ import { Form, Button, Header } from 'semantic-ui-react';
 *     Regular, Thin, Stuffed
 *     */
 
-const SideForm = ({ sides, onChange, selectedItem }) => {
+const SideForm = ({ sides, onChange, selectedItem, cancelClick }) => {
 
   const qty = [];
   for (let i = 0; i < 10; i++) { qty[i] = i + 1; }
 
   return (
     <Form>
-      <DropSelect label='Side' name='side' value={selectedItem.side} placeholder={'Select Side...'} values={sides} onChange={onChange}/>
-      <DropSelect label='Qty' values={qty} placeholder={qty[0].toString()}/>
+      <DropSelect width={10} label='Side' name='side' value={selectedItem.side} placeholder={'Select Side...'} values={sides} onChange={onChange}/>
+      <DropSelect width={10} label='Qty' values={qty} placeholder={qty[0].toString()}/>
 
       <Header as='h2'>${selectedItem.price}</Header>
       <Button.Group>
         <Button positive>Save</Button>
         <Button.Or />
-        <Button negative>Cancel</Button>
+        <Button negative onClick={cancelClick}>Cancel</Button>
       </Button.Group>
     </Form>
   );

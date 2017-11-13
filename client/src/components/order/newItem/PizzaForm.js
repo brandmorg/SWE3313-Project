@@ -16,7 +16,7 @@ import { Form, Checkbox, Grid, Button, Header } from 'semantic-ui-react';
 *     Regular, Thin, Stuffed
 *     */
 
-const PizzaForm = ({ sizes, crusts, toppings, onChange, selectedItem }) => {
+const PizzaForm = ({ sizes, crusts, toppings, onChange, selectedItem, cancelClick }) => {
 
   const qty = [];
   for (let i = 0; i < 10; i++) { qty[i] = i + 1; }
@@ -25,9 +25,9 @@ const PizzaForm = ({ sizes, crusts, toppings, onChange, selectedItem }) => {
 
   return (
     <Form>
-      <DropSelect label='Size' name='size' value={selectedItem.size} placeholder={'Size'} values={sizes} onChange={onChange}/>
-      <DropSelect label='Crust' name='crust' value={selectedItem.crust} values={crusts} placeholder={'Crust Type'} onChange={onChange}/>
-      <DropSelect label='Qty' values={qty} placeholder={qty[0].toString()}/>
+      <DropSelect width={10} label='Size' name='size' value={selectedItem.size} placeholder={'Size'} values={sizes} onChange={onChange}/>
+      <DropSelect width={10} label='Crust' name='crust' value={selectedItem.crust} values={crusts} placeholder={'Crust Type'} onChange={onChange}/>
+      <DropSelect width={10} label='Qty' values={qty} placeholder={qty[0].toString()}/>
       <Header as='h4'>Toppings</Header>
       <Form.Group>
         <Grid padded>
@@ -43,7 +43,7 @@ const PizzaForm = ({ sizes, crusts, toppings, onChange, selectedItem }) => {
       <Button.Group>
         <Button positive>Save</Button>
         <Button.Or />
-        <Button negative>Cancel</Button>
+        <Button negative onClick={cancelClick}>Cancel</Button>
       </Button.Group>
     </Form>
   );

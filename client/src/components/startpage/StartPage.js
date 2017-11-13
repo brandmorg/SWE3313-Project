@@ -1,15 +1,20 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { Segment, Header } from 'semantic-ui-react';
 
 const StartPage = () => (
-  <div className="jumbotron">
-      <h1>Testing Testy Test</h1>
-      <p>Want to make sure this stuff renders okay</p>
-      <button to="#" className="btn btn-primary btn-lg">no Clicky</button>
-  </div>
+  <Segment
+    style={{height: '30rem', padding: '6rem'}}
+    raised
+    vertical
+    textAlign='center'>
+    <Header size='huge'>
+      Welcome
+      <Header.Subheader>
+        Click a link above to get started
+      </Header.Subheader>
+    </Header>
+  </Segment>
 );
 
-
-// StartPage.propTypes = {};
 
 export default StartPage;

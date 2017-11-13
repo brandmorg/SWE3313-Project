@@ -1,38 +1,47 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { Segment, Header, Grid, Button, Dropdown } from 'semantic-ui-react';
+import DropSelect from "../common/DropSelect";
 
-/*
-* This component renders
-*   -The customer info for the order
-*   -The order type IN(pickup, delivery)
-*   -The order total (calculated field)
-*   -Buttons for various actions like
-*     -Submit/Save
-*     -Pay
-*     -Print Receipt
-*     -Cancel
-*     */
-
-class OrderSummary extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <div className="bg-light">
-        <h2 className="card-title">Test</h2>
-      </div>
-    );
-  }
+const OrderSummary = ({}) => {
+  return (
+    <Segment attached>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Header><Header.Subheader>Subtotal</Header.Subheader>$ 0.00</Header>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Header><Header.Subheader>Tax</Header.Subheader>$ 0.00</Header>
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Dropdown
+              fluid selection
+              placeholder='Pickup/Delivery'
+              options={[
+                { text: 'Pickup', value: 'pickup', selected: true },
+                { text: 'Delivery', value: 'delivery' }
+              ]}/>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Header><Header.Subheader>Total</Header.Subheader>$ 0.00</Header>
+          </Grid.Column>
+          <Grid.Column width={12} float='right' textAlign='right'>
+            <Button primary size='large'>Save</Button>
+            <Button positive size='large'>Pay</Button>
+            <Button negative size='large'>Cancel</Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
+  );
 };
 
 OrderSummary.propTypes = {
-  customer: PropTypes.object.isRequired
+
 };
 
 export default OrderSummary;
+

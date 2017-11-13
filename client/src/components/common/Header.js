@@ -5,8 +5,9 @@ import { Menu } from 'semantic-ui-react';
 const Header = () => {
   return (
     <Menu className='blue inverted'>
+      <Menu.Item as={Link} to="/">Start</Menu.Item>
       <Menu.Item as={Link} to="/order">New Order</Menu.Item>
-      <Menu.Item as={Link} to="/">Order Lookup</Menu.Item>
+      <Menu.Item as={Link} to="/orderLookup">Order Lookup</Menu.Item>
     </Menu>
   );
 };

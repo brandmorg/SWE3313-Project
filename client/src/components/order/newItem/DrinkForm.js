@@ -16,22 +16,22 @@ import { Form, Button, Header } from 'semantic-ui-react';
 *     Regular, Thin, Stuffed
 *     */
 
-const DrinkForm = ({ sizes, flavors, onChange, selectedItem }) => {
+const DrinkForm = ({ sizes, flavors, onChange, selectedItem, cancelClick }) => {
 
   const qty = [];
   for (let i = 0; i < 10; i++) { qty[i] = i + 1; }
 
   return (
     <Form>
-      <DropSelect label='Size' name='size' value={selectedItem.size} placeholder={'Size'} values={sizes} onChange={onChange}/>
-      <DropSelect label='Flavor' name='flavor' value={selectedItem.flavor} values={flavors} placeholder={'Flavor'} onChange={onChange}/>
-      <DropSelect label='Qty' values={qty} placeholder={qty[0].toString()}/>
+      <DropSelect width={10} label='Size' name='size' value={selectedItem.size} placeholder={'Size'} values={sizes} onChange={onChange}/>
+      <DropSelect width={10} label='Flavor' name='flavor' value={selectedItem.flavor} values={flavors} placeholder={'Flavor'} onChange={onChange}/>
+      <DropSelect width={10} label='Qty' values={qty} placeholder={qty[0].toString()}/>
 
       <Header as='h2'>${selectedItem.price}</Header>
       <Button.Group>
         <Button positive>Save</Button>
         <Button.Or />
-        <Button negative>Cancel</Button>
+        <Button negative onClick={cancelClick}>Cancel</Button>
       </Button.Group>
     </Form>
   );
